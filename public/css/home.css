@@ -145,8 +145,6 @@ body {
   color: #d8dddb;
   display: flex;
   justify-content: space-between;
-  /* text-align: center; */
-  /* gap: 60px; */
 }
 
 .Anchor_style {
@@ -178,7 +176,6 @@ body {
   width: 100vw;
   background: linear-gradient(rgba(27, 27, 27, 0.534), rgba(1, 1, 1, 0.7)),
     url("https://img.freepik.com/free-photo/beautiful-view-green-fields-sunrise-captured-canggu-bali_181624-14146.jpg?w=1060&t=st=1682018724~exp=1682019324~hmac=34bcf5b58abf38bfae4bec307a9492d150dc86783819691419cb9f8d449d0c45");
-  /* clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%); */
   background-position: center;
   background-size: cover;
   position: relative;
@@ -245,26 +242,6 @@ body {
   transition: 0.5s;
 }
 
-.content .social_icons a:hover {
-  color: var(--primary);
-}
-
-.arrow {
-  text-align: center;
-  margin: 1% 0;
-}
-
-.arrow .fa {
-  font-size: 3rem;
-  color: var(--white);
-  font-weight: 200;
-  text-decoration: none;
-}
-
-.bounce {
-  -webkit-animation: bounce 2s infinite;
-  animation: bounce 2s infinite;
-}
 
 .Cont {
   background-color: rgb(206, 198, 192);
@@ -685,45 +662,6 @@ a.view {
   color: inherit;
 }
 
-.footer .social_media {
-  display: flex;
-  gap: 3rem;
-}
-
-.footer .icon {
-  transition: all 0.2s;
-  height: 3rem;
-  fill: var(--color-white);
-}
-
-.footer .icon:hover {
-  transform: translateY(-0.15rem);
-  transform: scale(1.2);
-}
-
-.footer .icon-facebook:hover {
-  fill: #0066ff;
-}
-
-.footer .icon-whatsapp:hover {
-  fill: #02af11;
-}
-
-.footer .icon-insta:hover {
-  fill: #f54b67;
-}
-
-.footer .icon-mail:hover {
-  fill: #cf0a0a;
-}
-
-.footer .icon-twitter:hover {
-  fill: #1e7fee;
-}
-
-.footer .icon-youtube:hover {
-  fill: red;
-}
 
 .hr__line {
   background-color: #776565;
