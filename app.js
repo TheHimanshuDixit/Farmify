@@ -14,13 +14,13 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views/")); // suggested
 app.use(express.static("public"));
 
-let distance = {
-  "Jeevan Singhpura, Alwar": 167,
-  "Mohanpur Ishrana Rambas Road, Mohanpur, Rewari": 135,
-  "77R4+XGV, Sarmathla, Bhanakpur, Haryana": 58,
-  "2G66+CQ, Baghela, Punjab": 403,
-  "Kotkasim, Alwar": 132
-};
+// const distance = [];
+// distance["Jeevan Singhpura, Alwar"]= 167;
+// distance["Mohanpur Ishrana Rambas Road, Mohanpur, Rewari"]= 135;
+// distance["77R4+XGV, Sarmathla, Bhanakpur, Haryana"]= 58;
+// distance["2G66+CQ, Baghela, Punjab"]= 403;
+// distance["Kotkasim, Alwar"]= 132;
+
 //setting up config file
 if (process.env.NODE_ENV !== "PRODUCTION") require("dotenv").config({ path: "./backend/config/config.env" });
 
@@ -76,8 +76,7 @@ app.post("/logincompany", async (req, res) => {
         gst: data.user.gst,
         orders: data.user.orders,
         hasQuery: false,
-        distance: distance,
-        message: "",
+        message: ""
       });
     } else {
       console.log("Something went wrong")
