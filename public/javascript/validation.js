@@ -5,6 +5,7 @@ const Phone = document.getElementById("Phone");
 const Email = document.getElementById("Email");
 const Aadhar = document.getElementById("Aadhar");
 const Acre = document.getElementById("Acres");
+const Location = document.getElementById("Add");
 const Password = document.getElementById("Password")
 const confirmPassword = document.getElementById("confirmPassword");
 const FarmerSignUp = document.getElementById("Farmer_SignUp");
@@ -16,6 +17,7 @@ let validPhone = false;
 let validEmail = false;
 let validAadhar = false;
 let validAcre = false;
+let validAdd = false;
 let validPassword = false;
 
 Fname.addEventListener('blur', () => {
@@ -145,7 +147,23 @@ Aadhar.addEventListener('blur', () => {
 Acre.addEventListener('blur', () => {
 
     let str = Acre.value;
-    if (str > 0) {
+    if (str.length > 5) {
+        validAcre = true;
+        console.log('Your name is valid');
+        Acre.nextElementSibling.classList.add('hide');
+        Acre.nextElementSibling.classList.remove('show');
+    }
+    else {
+        validAcre = false;
+        Acre.nextElementSibling.classList.remove('hide')
+        Acre.nextElementSibling.classList.add('show');
+    }
+})
+
+Acre.addEventListener('blur', () => {
+
+    let str = Add.value;
+    if (str > 5) {
         validAcre = true;
         console.log('Your name is valid');
         Acre.nextElementSibling.classList.add('hide');
