@@ -14,15 +14,22 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views/")); // suggested
 app.use(express.static("public"));
 
+let distance = {
+  "Jeevan Singhpura, Alwar": 167,
+  "Mohanpur Ishrana Rambas Road, Mohanpur, Rewari": 135,
+  "77R4+XGV, Sarmathla, Bhanakpur, Haryana": 58,
+  "2G66+CQ, Baghela, Punjab": 403,
+  "Kotkasim, Alwar": 132
+};
 //setting up config file
-if(process.env.NODE_ENV !== "PRODUCTION")require("dotenv").config({ path: "./backend/config/config.env" });
+if (process.env.NODE_ENV !== "PRODUCTION") require("dotenv").config({ path: "./backend/config/config.env" });
 
 app.use(express.json());
 app.use(cookieParser());
 
 // importing all routes
 const farmers = require("./backend/routes/farmer");
-const companies = require("./backend/routes/company"); 
+const companies = require("./backend/routes/company");
 
 app.use('/api/v1', farmers);
 app.use('/api/v1', companies);
@@ -57,7 +64,7 @@ app.post("/logincompany", async (req, res) => {
       companyDetails,
       config
     );
-    if(data){
+    if (data) {
 
       currComp = data.user;
       res.render("companyDashboard", {
@@ -69,9 +76,10 @@ app.post("/logincompany", async (req, res) => {
         gst: data.user.gst,
         orders: data.user.orders,
         hasQuery: false,
+        distance: distance,
         message: "",
       });
-    }else{
+    } else {
       console.log("Something went wrong")
     }
   } catch (error) {
@@ -95,7 +103,7 @@ app.post("/loginfarmer", async (req, res) => {
       farmerdetails,
       config
     );
-    if(data){
+    if (data) {
 
       res.render("farmerDashboard", {
         firstName: data.user.firstName,
@@ -108,7 +116,7 @@ app.post("/loginfarmer", async (req, res) => {
         crops: data.user.crops,
         orders: data.user.orders,
       });
-    }else{
+    } else {
       console.log("something went wrong");
     }
   } catch (error) {
@@ -209,7 +217,7 @@ app.post("/registerfarmer", async (req, res) => {
       farmerdetails,
       config
     );
-    if(data){
+    if (data) {
 
       res.render("farmerDashboard", {
         firstName: data.user.firstName,
@@ -222,7 +230,7 @@ app.post("/registerfarmer", async (req, res) => {
         crops: data.user.crops,
         orders: data.user.orders,
       });
-    }else{
+    } else {
       console.log("Something went wrong");
     }
   } catch (error) {
@@ -243,13 +251,13 @@ app.post("/getfarmers", async (req, res) => {
   try {
     const land = req.body.reqLand ? 1 * req.body.reqLand : 0;
     let query_url;
-    if(req.body.crop){
+    if (req.body.crop) {
       query_url = `http://127.0.0.1:3000/api/v1/farmer?keyword=${req.body.crop}&land[gte]=${land}`;
-    }else{
+    } else {
       query_url = `http://127.0.0.1:3000/api/v1/farmer?land[gte]=${land}`;
     }
     const { data } = await axios.get(query_url);
-    if(data){
+    if (data) {
 
       res.render("companyDashboard", {
         firstName: currComp.firstName,
@@ -260,18 +268,18 @@ app.post("/getfarmers", async (req, res) => {
         gst: currComp.gst,
         orders: currComp.orders,
         hasQuery: true,
-      farmers: data.farmers,
-      message: "",
-    });
-  }else{
-    console.log("Something Went wrong");
-  }
+        farmers: data.farmers,
+        message: "",
+      });
+    } else {
+      console.log("Something Went wrong");
+    }
   } catch (error) {
     console.log(error);
   }
 });
 app.post('/sendorder', async (req, res) => {
-  
+
   const newOrder = {
     by: currComp._id,
     company: currComp.companyName,
@@ -279,33 +287,33 @@ app.post('/sendorder', async (req, res) => {
     crops: req.body.input_crop,
     amount: req.body.input_amount,
   }
-  
+
 
   const config = {
     headers: {
       "content-type": "application/json",
     },
   };
- try {
-  const { data } = await axios.patch(
-    `http://127.0.0.1:3000/api/v1/farmer/order/${req.body.fid}`,
-    newOrder,
-    config
-  );
-  res.render("companyDashboard", {
-    firstName: currComp.firstName,
-    lastName: currComp.lastName,
-    companyName: currComp.companyName,
-    email: currComp.email,
-    cAddress: currComp.cAddress,
-    gst: currComp.gst,
-    orders: currComp.orders,
-    hasQuery: false,
-    message: "Order Sent Successfully",
-  });
- } catch (error) {
-   console.log(error.response.data.errMessage);
- }
+  try {
+    const { data } = await axios.patch(
+      `http://127.0.0.1:3000/api/v1/farmer/order/${req.body.fid}`,
+      newOrder,
+      config
+    );
+    res.render("companyDashboard", {
+      firstName: currComp.firstName,
+      lastName: currComp.lastName,
+      companyName: currComp.companyName,
+      email: currComp.email,
+      cAddress: currComp.cAddress,
+      gst: currComp.gst,
+      orders: currComp.orders,
+      hasQuery: false,
+      message: "Order Sent Successfully",
+    });
+  } catch (error) {
+    console.log(error.response.data.errMessage);
+  }
 
 });
 
