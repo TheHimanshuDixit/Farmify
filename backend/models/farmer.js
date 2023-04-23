@@ -45,7 +45,7 @@ const farmerSchema = new mongoose.Schema({
   land: {
     type: Number,
   },
-  Add: {
+  Address: {
     type: String,
   },
   password: {
