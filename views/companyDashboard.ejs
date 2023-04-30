@@ -408,11 +408,11 @@
                         Phone: <%= farmers[i].contactNo %>
                       </p>
                       <p class="text-gray-700 text-base mb-4">
-                        Location: <%= farmers[i].Address %>
+                        Location: <%= farmers[i].Address %> KM
                       </p>
-                      <!-- <p class="text-gray-700 text-base mb-4">
-                        Distance: 
-                      </p> -->
+                      <p class="text-gray-700 text-base mb-4">
+                        Distance: <%= distance[farmers[i].Address] %>
+                      </p>
                       <div  class="py-3 px-3 border-b border-gray-300" style="font-weight: 200; font-size: 1rem;">
                         Id:- <%= farmers[i]._id %>
                       </div>

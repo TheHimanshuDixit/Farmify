@@ -14,12 +14,12 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views/")); // suggested
 app.use(express.static("public"));
 
-// const distance = [];
-// distance["Jeevan Singhpura, Alwar"]= 167;
-// distance["Mohanpur Ishrana Rambas Road, Mohanpur, Rewari"]= 135;
-// distance["77R4+XGV, Sarmathla, Bhanakpur, Haryana"]= 58;
-// distance["2G66+CQ, Baghela, Punjab"]= 403;
-// distance["Kotkasim, Alwar"]= 132;
+const distance = [];
+distance["Jeevan Singhpura, Alwar"]= 167;
+distance["Mohanpur Ishrana Rambas Road, Mohanpur, Rewari"]= 135;
+distance["77R4+XGV, Sarmathla, Bhanakpur, Haryana"]= 58;
+distance["2G66+CQ, Baghela, Punjab"]= 403;
+distance["Kotkasim, Alwar"]= 132;
 
 //setting up config file
 if (process.env.NODE_ENV !== "PRODUCTION") require("dotenv").config({ path: "./backend/config/config.env" });
@@ -75,6 +75,7 @@ app.post("/logincompany", async (req, res) => {
         gst: data.user.gst,
         orders: data.user.orders,
         hasQuery: false,
+        distance:distance,
         message: ""
       });
     } else {
@@ -157,6 +158,7 @@ app.post("/registercompany", async (req, res) => {
       address: data.user.address,
       gst: data.user.gst,
       orders: data.user.orders,
+      distance: distance,
       hasQuery: false,
       message: ""
     });
@@ -255,7 +257,6 @@ app.post("/getfarmers", async (req, res) => {
     }
     const { data } = await axios.get(query_url);
     if (data) {
-
       res.render("companyDashboard", {
         firstName: currComp.firstName,
         lastName: currComp.lastName,
@@ -264,6 +265,7 @@ app.post("/getfarmers", async (req, res) => {
         address: currComp.address,
         gst: currComp.gst,
         orders: currComp.orders,
+        distance: distance,
         hasQuery: true,
         farmers: data.farmers,
         message: "",
@@ -305,6 +307,7 @@ app.post('/sendorder', async (req, res) => {
       address: currComp.address,
       gst: currComp.gst,
       orders: currComp.orders,
+      distance: distance,
       hasQuery: false,
       message: "Order Sent Successfully",
     });
