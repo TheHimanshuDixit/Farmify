@@ -65,14 +65,13 @@ app.post("/logincompany", async (req, res) => {
       config
     );
     if (data) {
-
       currComp = data.user;
       res.render("companyDashboard", {
         firstName: data.user.firstName,
         lastName: data.user.lastName,
         companyName: data.user.companyName,
         email: data.user.email,
-        cAddress: data.user.cAddress,
+        address: data.user.address,
         gst: data.user.gst,
         orders: data.user.orders,
         hasQuery: false,
@@ -103,7 +102,6 @@ app.post("/loginfarmer", async (req, res) => {
       config
     );
     if (data) {
-
       res.render("farmerDashboard", {
         firstName: data.user.firstName,
         lastName: data.user.lastName,
@@ -139,7 +137,7 @@ app.post("/registercompany", async (req, res) => {
     companyName: req.body.companyName,
     contactNo: req.body.ccontactNo,
     email: req.body.cemail,
-    cAddress: req.body.cAddress,
+    address: req.body.caddress,
     gst: req.body.cgst,
     password: req.body.cpassword,
     orders: [],
@@ -156,7 +154,7 @@ app.post("/registercompany", async (req, res) => {
       lastName: data.user.lastName,
       companyName: data.user.companyName,
       email: data.user.email,
-      cAddress: data.user.cAddress,
+      address: data.user.address,
       gst: data.user.gst,
       orders: data.user.orders,
       hasQuery: false,
@@ -263,7 +261,7 @@ app.post("/getfarmers", async (req, res) => {
         lastName: currComp.lastName,
         companyName: currComp.companyName,
         email: currComp.email,
-        cAddress: currComp.cAddress,
+        address: currComp.address,
         gst: currComp.gst,
         orders: currComp.orders,
         hasQuery: true,
@@ -304,7 +302,7 @@ app.post('/sendorder', async (req, res) => {
       lastName: currComp.lastName,
       companyName: currComp.companyName,
       email: currComp.email,
-      cAddress: currComp.cAddress,
+      address: currComp.address,
       gst: currComp.gst,
       orders: currComp.orders,
       hasQuery: false,
