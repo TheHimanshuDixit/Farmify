@@ -9,7 +9,7 @@ Farmify is a Non-Profit Organization that provides Farmers exposure and opportun
 - JAVASCRIPT 
 - EJS
 - EXPRESS.JS
-- NODE JS
+- NODE.JS
 - MONGODB
 ```
 
