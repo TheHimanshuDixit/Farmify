@@ -7,7 +7,7 @@ const { default: axios } = require("axios");
 const app = express();
 
 const cookieParser = require("cookie-parser");
-const errorMiddleware = require('.//backend/middlewares/error');
+const errorMiddleware = require('./backend/middlewares/error');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
